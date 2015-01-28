@@ -1,3 +1,32 @@
+@font-face {
+    font-family: 'BebasNeue_Book';
+    src: url('fonts/BebasNeue_Book.otf') format('embedded-opentype'), url('fonts/BebasNeue_Book.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'BebasNeue_Light';
+    src: url('fonts/BebasNeue_Light.otf') format('embedded-opentype'), url('fonts/BebasNeue_Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'BebasNeue_Regular';
+    src: url('fonts/BebasNeue_Regular.otf') format('embedded-opentype'), url('fonts/BebasNeue_Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'BebasNeue_Thin';
+    src: url('BebasNeue_Thin.ttf') format('truetype');
+    /* src: url('fonts/BebasNeue_Regular.otf') format('embedded-opentype'), url('BebasNeue_Thin.ttf') format('truetype'); */
+}
+@font-face {
+    font-family: 'BebasNeue_Thin';
+    src: url('BebasNeue_Thin.ttf') format('truetype');
+    /* src: url('fonts/BebasNeue_Regular.otf') format('embedded-opentype'), url('BebasNeue_Thin.ttf') format('truetype'); */
+}
+@font-face {
+    font-family: 'BebasNeue_Bold';
+    src: url('BebasNeue_Bold.ttf') format('truetype');
+    /* src: url('fonts/BebasNeue_Regular.otf') format('embedded-opentype'), url('BebasNeue_Thin.ttf') format('truetype'); */
+}
+
+
 html,
 body {
     height: 100%;
@@ -8,6 +37,7 @@ body {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
+	background: url('images/background.jpg') no-repeat 50% 50%;
 }
 
 .wrap > .container {
@@ -88,4 +118,87 @@ a.desc:after {
     border-left: 3px solid #eed3d7;
     padding: 10px 20px;
     margin: 0 0 15px 0;
+}
+
+.site-login{
+	width: 400px;
+	height: 279px;
+	background: #fff;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	border-radius: 4px;
+}
+.site-login .top-border{
+	width: 100%;
+	height: 5px;
+	margin-bottom: 52px;
+}
+
+.site-login .top-border > div{
+	height: 100%;
+	width: 100px;
+	float: left;
+}
+
+.site-login .top-border .one{
+	background: #00829c;
+	border-radius: 4px 0 0 0;
+}
+
+.site-login .top-border .two{
+	background: #7ab8bf;
+}
+
+.site-login .top-border .three{
+	background: #edc278;
+}
+
+.site-login .top-border .four{
+	background: #cc6e91;
+	border-radius: 0 4px 0 0;
+}
+
+.site-login .login-input{
+	width: 330px;
+	margin-left: 51px;
+}
+
+.site-login .login-input input{
+	height: 49px;
+	font-family: BebasNeue_Regular;
+	text-transform: uppercase;
+	font-size: 16px;
+	padding: 10px 17px;
+}
+
+.site-login .login-input input:focus{
+	box-shadow: none;
+}
+
+.form-group{
+	margin-bottom: 10px;
+}
+
+.site-login .login-btn{
+	width: 300px;
+	border: none;
+	border-bottom: 2px solid #a80202;
+	height: 53px;
+	background: #d30807;
+	border-radius: 5px;
+	font-family: BebasNeue_Regular;
+	color: #fff;
+	font-size: 22px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.site-login .col-lg-offset-1.col-lg-11{
+	width: 100%;
+	margin: 0;
+	text-align: center;
 }
