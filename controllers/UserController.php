@@ -60,7 +60,7 @@ class UserController extends Controller
 				$model->authKey = \Yii::$app->security->generateRandomString(32);
 				$model->accessToken = \Yii::$app->security->generateRandomString(64);
 				if($model->save(false)){
-					return $this->redirect(['view', 'id' => $model->id]);
+					return $this->redirect(['site/login']);
 				}
 			}else{var_dump($model->errors);}
         } else {

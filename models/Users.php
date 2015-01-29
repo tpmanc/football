@@ -12,6 +12,8 @@ use Yii;
  * @property string $password
  * @property string $authKey
  * @property string $accessToken
+ * @property string $name
+ * @property string $surname
  */
 class Users extends \yii\db\ActiveRecord
 {
@@ -27,7 +29,7 @@ class Users extends \yii\db\ActiveRecord
 	public function scenarios()
 	{
 		return [
-			'registration' => ['username', 'password','password2'],
+			'registration' => ['username', 'password','password2', 'name', 'surname'],
 			'login' => ['username', 'password'],
 		];
 	}
@@ -38,9 +40,9 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password', 'authKey', 'accessToken'], 'required'],
+            [['username', 'password', 'authKey', 'accessToken', 'name', 'surname'], 'required'],
             [['username', 'password', 'accessToken', 'password2'], 'string', 'max' => 255],
-            [['authKey'], 'string', 'max' => 32],
+            [['authKey', 'name', 'surname'], 'string', 'max' => 32],
 			[['password2'], 'required', 'on' => 'registration'],
 			[['password'], 'string', 'min' => 6, 'on' => 'registration'],
 			['password', 'compare', 'compareAttribute' => 'password2', 'on' => 'registration'],
@@ -60,6 +62,8 @@ class Users extends \yii\db\ActiveRecord
             'password2' => 'Повторите пароль',
             'authKey' => 'Auth Key',
             'accessToken' => 'Access Token',
+            'name' => 'Имя',
+            'surname' => 'Фамилия',
         ];
     }
 }
