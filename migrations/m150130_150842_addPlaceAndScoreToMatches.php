@@ -13,7 +13,7 @@ class m150130_150842_addPlaceAndScoreToMatches extends Migration
 
     public function down()
     {
-        $this->dropColumn('{{%matches}}', 'name');
-        $this->dropColumn('{{%matches}}', 'surname');
+        $this->dropColumn('{{%matches}}', 'placeId');
+        $this->dropColumn('{{%matches}}', 'score');
     }
 }
