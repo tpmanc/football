@@ -10,6 +10,8 @@ use Yii;
  * @property integer $id
  * @property string $title
  * @property string $adress
+ *
+ * @property Matches[] $matches
  */
 class Places extends \yii\db\ActiveRecord
 {
@@ -27,7 +29,7 @@ class Places extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'adress'], 'required'],
+            [['title'], 'required'],
             [['title'], 'string', 'max' => 64],
             [['adress'], 'string', 'max' => 255]
         ];
@@ -43,5 +45,13 @@ class Places extends \yii\db\ActiveRecord
             'title' => 'Название',
             'adress' => 'Адрес',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMatches()
+    {
+        return $this->hasMany(Matches::className(), ['placeId' => 'id']);
     }
 }
