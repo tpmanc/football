@@ -72,9 +72,19 @@ class MatchController extends Controller
         $model = new Matches();
         $places = Places::find()->all();
         $model->placeId = $places[0];
+        $model->scenario = 'adminCreate';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+            Yii::$app->response->format = 'json';
+            return \yii\widgets\ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->date = $this->convertDateAndTimeToInt($model->onlyDate, $model->onlyTime);
+            $model->score = '';
+            if( $model->save() ){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -92,10 +102,21 @@ class MatchController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->scenario = 'adminUpdate';
+        $model->onlyDate = date('d.m.Y', $model->date);
+        $model->onlyTime = date('H:i', $model->date);
         $places = Places::find()->all();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+            Yii::$app->response->format = 'json';
+            return \yii\widgets\ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->date = $this->convertDateAndTimeToInt($model->onlyDate, $model->onlyTime);
+            if( $model->save() ){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -130,5 +151,13 @@ class MatchController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    private function convertDateAndTimeToInt($date, $time)
+    {
+        $arr1 = explode(':', $time);
+        $arr2 = explode('.', $date);
+        // h, m, s, mo, d, y
+        return mktime($arr1[0], $arr1[1], 0, $arr2[1], $arr2[0], $arr2[2]);
     }
 }

@@ -21,14 +21,28 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'date',
-            'placeId',
+            [
+                'attribute' => 'placeId',
+                'label' => 'Место',
+                'value' => function ($data){
+                    return $data->place->title;
+                },
+            ],
             'score',
+            [
+                'attribute' => 'date',
+                'format' => ['date', 'php:d.m.Y'],
+            ],
+            [
+                'attribute' => 'date',
+                'label' => 'Время',
+                'format' => ['time', 'php:H:i'],
+            ],
+            
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}',],
 

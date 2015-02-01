@@ -16,12 +16,22 @@ use Yii;
  */
 class Matches extends \yii\db\ActiveRecord
 {
+    public $onlyDate;
+    public $onlyTime;
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
         return 'matches';
+    }
+
+    public function scenarios()
+    {
+        return [
+            'adminUpdate' => ['onlyDate', 'onlyTime', 'placeId', 'score'],
+            'adminCreate' => ['onlyDate', 'onlyTime', 'placeId'],
+        ];
     }
 
     /**
@@ -32,7 +42,12 @@ class Matches extends \yii\db\ActiveRecord
         return [
             [['date', 'placeId', 'score'], 'required'],
             [['date', 'placeId'], 'integer'],
-            [['score'], 'string', 'max' => 6]
+            [['score'], 'string', 'max' => 6],
+
+            [['score'], 'validateScore', 'on' => 'adminUpdate'],
+            [['onlyDate'], 'validateOnlyDate', 'on' => ['adminUpdate','adminCreate']],
+            [['onlyTime'], 'validateOnlyTime', 'on' => ['adminUpdate','adminCreate']],
+            [['onlyDate', 'onlyTime'] ,'required', 'on' => ['adminUpdate','adminCreate']],
         ];
     }
 
@@ -46,6 +61,8 @@ class Matches extends \yii\db\ActiveRecord
             'date' => 'Дата',
             'placeId' => 'Место',
             'score' => 'Счет',
+            'onlyDate' => 'Дата матча',
+            'onlyTime' => 'Время начала',
         ];
     }
 
@@ -55,5 +72,26 @@ class Matches extends \yii\db\ActiveRecord
     public function getPlace()
     {
         return $this->hasOne(Places::className(), ['id' => 'placeId']);
+    }
+
+    public function validateScore($attribute, $params)
+    {
+        if( !preg_match('/^[0-9]{1,2}\:[0-9]{1,2}$/', $this->$attribute) ){
+            $this->addError($attribute, 'Неправильный формат счета (2:5)');
+        }
+    }
+
+    public function validateOnlyDate($attribute, $params)
+    {
+        if( !preg_match('/^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/', $this->$attribute) ){
+            $this->addError($attribute, 'Неправильный формат даты (dd.mm.yyyy)');
+        }
+    }
+
+    public function validateOnlyTime($attribute, $params)
+    {
+        if( !preg_match('/^[0-9]{2}\:[0-9]{2}$/', $this->$attribute) ){
+            $this->addError($attribute, 'Неправильный формат времени (hh:mm)');
+        }
     }
 }
