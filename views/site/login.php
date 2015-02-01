@@ -1,12 +1,18 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\web\JqueryAsset;
+use yii\bootstrap\BootstrapAsset;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\LoginForm */
 
 $this->title = 'Войти';
+
+// $this->registerCssFile(Yii::getAlias("@web/css/admin/datepicker3.css"), []);
+
+$this->registerJsFile(Yii::getAlias('@web/js/animate.js'), ['depends' => JqueryAsset::className()]);
 ?>
 <div class="site-login">
 	<div class="top-border">
