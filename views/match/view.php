@@ -6,36 +6,43 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Matches */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Matches', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Результат матча '.date('d.m.Y', $model->date);
+$scoreArr = explode(':', $model->score);
 ?>
 <div class="matches-view">
+    <div class="teamHolder">
+        <div class="redTeam">
+            <div class="textArea">
+                <div class="teamTitle">Красные</div>
+                <div class="redSeparator"></div>
+                <div class="scoreList">
+                    <div class="scoreItem">Леха Фамилия (4)</div>
+                    <div class="scoreItem">Кирилл Казакевич (4)</div>
+                    <div class="scoreItem">Леха Фамилия (4)</div>
+                    <div class="scoreItem">Леха Фамилия (4)</div>
+                </div>
+            </div>
+            <div class="emblemArea">
+                <img src="<?=Yii::getAlias('@web/images/redTeamEmblem.png')?>" alt="Красные" />
+                <div class="redScore"><?=$scoreArr[0]?></div>
+            </div>
+        </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'date',
-            'placeId' => [
-                'label' => 'Место',
-                'value' => $place->title,
-            ],
-            'score',
-        ],
-    ]) ?>
-
+        <div class="greenTeam">
+            <div class="emblemArea">
+                <div class="greenScore"><?=$scoreArr[0]?></div>
+                <img src="<?=Yii::getAlias('@web/images/greenTeamEmblem.png')?>" alt="Зеленые" />
+            </div>
+            <div class="textArea">
+                <div class="teamTitle">Зеленые</div>
+                <div class="greenSeparator"></div>
+                <div class="scoreList">
+                    <div class="scoreItem">Леха Фамилия (4)</div>
+                    <div class="scoreItem">Кирилл Казакевич (4)</div>
+                    <div class="scoreItem">Леха Фамилия (4)</div>
+                    <div class="scoreItem">Леха Фамилия (4)</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

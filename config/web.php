@@ -7,6 +7,7 @@ $config = [
 	'language' => 'ru-RU',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => 'match/match-history',
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\admin',

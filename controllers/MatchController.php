@@ -42,14 +42,12 @@ class MatchController extends Controller
      * Lists all Matches models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionMatchHistory()
     {
-        $searchModel = new MatchesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $matches = Matches::find()->orderBy(['date' => SORT_DESC])->asArray()->all();
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+        return $this->render('match-history', [
+            'matches' => $matches,
         ]);
     }
 

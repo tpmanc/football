@@ -30,19 +30,118 @@
 html,
 body {
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
+
+h1 {margin: 0;}
 
 .wrap {
     min-height: 100%;
-    height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
+    height: 100%;
+/*    margin: 0 auto -60px;
+    padding: 0 0 60px;*/
 	background: url('images/background.jpg') no-repeat 50% 50%;
 }
 
-.wrap > .container {
-    padding: 70px 15px 20px;
+.wrap .contentHolder {
+    width: 940px;
+    margin: 0 auto;
+    background: #fff;
+    height: 100%;
 }
+
+.wrap .topMenu {
+    height: 63px;
+    background: #545454;
+    color: #fff;
+    border-bottom: 2px solid #363636;
+    padding-left: 83px;
+}
+
+.wrap .topMenu .leftButtons {
+    float: left;
+    height: 43px;
+    padding-top: 22px;
+}
+
+.wrap .topMenu .rightButtons {
+    float: right;
+    height: 43px;
+    padding-top: 22px;
+}
+
+.wrap .topMenu a{
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-family: BebasNeue_Regular;
+    padding: 22px 15px;
+    word-spacing: 5px;
+}
+
+.wrap .topMenu a:hover, .wrap .topMenu a.active{
+    background: #797979;
+    border-bottom: 2px solid #d70101;
+}
+
+.wrap .container {
+    padding-top: 38px;
+}
+
+.wrap .container h1 {
+    font-size: 50px;
+    color: #373737;
+    font-family: BebasNeue_Regular;
+    text-align: center;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+.wrap .container .separatorHolder {
+    height: 3px;
+    margin: 18px 0 47px 0;
+}
+
+.wrap .container .separator {
+    width: 157px;
+    background: #e1e1e1;
+    height: 3px;
+    margin: 0 auto;
+}
+
+.wrap .matchesHolder {
+    width: 370px;
+    margin: 0 auto;
+    padding-left: 30px;
+}
+
+.wrap .matchesHolder a {
+    color: #373737;
+    font-size: 24px;
+    font-family: BebasNeue_Regular;
+    font-weight: bold;
+    padding-left: 36px;
+    padding-right: 10px;
+    margin-right: 17px;
+    margin-left: 17px;
+    padding-bottom: 2px;
+    background: url('images/sprite.png') 4px 4px no-repeat;
+    height: 25px;
+    margin-bottom: 26px;
+    display: inline-block;
+}
+
+.wrap .matchesHolder a:hover {
+    background-color: #d70101;
+    background-position: 4px -25px;
+    color: #fff;
+}
+
+/*.wrap > .container {
+    padding: 70px 15px 20px;
+}*/
 
 .footer {
     height: 60px;
@@ -168,11 +267,16 @@ a.desc:after {
 }
 
 .site-login .login-input input{
-	height: 49px;
-	font-family: BebasNeue_Regular;
-	text-transform: uppercase;
-	font-size: 16px;
-	padding: 10px 17px;
+    height: 27px;
+    font-family: BebasNeue_Regular;
+    text-transform: uppercase;
+    font-size: 16px;
+    padding: 10px 17px;
+    width: 266px;
+    border: 0px;
+    border-top: 2px solid #eef0f1;
+    background: #f3f5f6;
+    border-radius: 4px;
 }
 
 .site-login .login-input input:focus{
@@ -197,8 +301,139 @@ a.desc:after {
 	text-transform: uppercase;
 }
 
-.site-login .col-lg-offset-1.col-lg-11{
+.site-login .col-lg-offset-1.col-lg-11 {
 	width: 100%;
 	margin: 0;
 	text-align: center;
+}
+
+.teamHolder {
+    text-align: center;
+    width: 900px;
+    height: 100px;
+    margin: 0 auto;
+    margin-top: -12px;
+    padding-left: 70px;
+}
+
+.teamHolder .redTeam {
+    float: left;
+    width: 387px;
+    padding-left: 27px;
+    text-align: left;
+}
+
+.teamHolder .textArea {
+    float: left;
+    width: 198px;
+}
+
+.teamHolder .emblemArea {
+    float: left;
+    width: 163px;
+}
+
+.teamHolder .emblemArea img {
+    float: left;
+    position: relative;
+    z-index: 2;
+}
+
+.teamHolder .emblemArea .redScore {
+    float: left;
+    width: 47px;
+    height: 69px;
+    display: inline-block;
+    background: url('images/sprite.jpg') 89px -78px no-repeat;
+    background-color: #545454;
+    margin-left: -37px;
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
+    padding: 9px 23px 0 42px;
+    font-size: 59px;
+    font-family: BebasNeue_Regular;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.teamHolder .textArea .teamTitle {
+    font-size: 30px;
+    font-family: BebasNeue_Regular;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ff0000;
+}
+
+.teamHolder .textArea .redSeparator {
+    height: 3px;
+    width: 162px;
+    background: #ff0000;
+    margin: 3px 0 0 1px;
+}
+
+.teamHolder .textArea .scoreList {
+    padding-top: 21px;
+}
+
+.teamHolder .textArea .scoreList .scoreItem {
+    font-size: 18px;
+    font-family: BebasNeue_Regular;
+    font-weight: normal;
+    color: #373737;
+    padding: 2px 0 2px 31px;
+    word-spacing: 3px;
+    background: url('images/sprite.png') 1px 1px no-repeat;
+    margin-bottom: 10px;
+}
+
+.teamHolder .greenTeam {
+    float: left;
+    width: 400px;
+    text-align: left;
+}
+
+.teamHolder .emblemArea .greenScore {
+    float: left;
+    width: 47px;
+    height: 69px;
+    display: inline-block;
+    background: url('images/sprite.jpg') 0px 0px no-repeat;
+    background-color: #545454;
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
+    padding: 9px 48px 0 23px;
+    font-size: 59px;
+    font-family: BebasNeue_Regular;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.teamHolder .greenTeam .emblemArea img {
+    margin-left: -38px;
+}
+
+.teamHolder .greenTeam .textArea {
+    text-align: right;
+}
+
+.teamHolder .greenTeam .textArea .teamTitle {
+    color: #22b600;
+    padding-right: 7px;
+}
+
+.teamHolder .textArea .greenSeparator {
+    height: 3px;
+    width: 161px;
+    background: #22b600;
+    margin: 3px 0 0 31px;
+}
+
+.teamHolder .greenTeam .scoreList{
+    padding-right: 10px;
 }
