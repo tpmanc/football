@@ -13,6 +13,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     public $accessToken;
     public $name;
     public $surname;
+    public $isAdmin;
 
     /**
      * @inheritdoc

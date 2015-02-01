@@ -11,6 +11,8 @@ use Yii;
  * @property integer $date
  * @property integer $placeId
  * @property string $score
+ *
+ * @property Places $place
  */
 class Matches extends \yii\db\ActiveRecord
 {
@@ -42,8 +44,16 @@ class Matches extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'date' => 'Дата',
-            'placeId' => 'Место игры',
+            'placeId' => 'Место',
             'score' => 'Счет',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPlace()
+    {
+        return $this->hasOne(Places::className(), ['id' => 'placeId']);
     }
 }

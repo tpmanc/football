@@ -30,7 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'date',
-            'placeId',
+            'placeId' => [
+                'label' => 'Место',
+                'value' => $place->title,
+            ],
             'score',
         ],
     ]) ?>

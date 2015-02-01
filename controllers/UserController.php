@@ -62,7 +62,7 @@ class UserController extends Controller
 				if($model->save(false)){
 					return $this->redirect(['site/login']);
 				}
-			}else{var_dump($model->errors);}
+			}
         } else {
             return $this->render('registration', [
                 'model' => $model,
@@ -87,19 +87,6 @@ class UserController extends Controller
                 'model' => $model,
             ]);
         }
-    }
-
-    /**
-     * Deletes an existing Users model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**

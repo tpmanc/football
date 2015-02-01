@@ -31,6 +31,7 @@ class Users extends \yii\db\ActiveRecord
 		return [
 			'registration' => ['username', 'password','password2', 'name', 'surname'],
 			'login' => ['username', 'password'],
+            'adminUpdate' => ['username', 'password', 'name', 'surname', 'isAdmin'],
 		];
 	}
 
@@ -40,13 +41,14 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password', 'authKey', 'accessToken', 'name', 'surname'], 'required'],
+            [['username', 'password', 'authKey', 'accessToken', 'name', 'surname', 'isAdmin'], 'required'],
             [['username', 'password', 'accessToken', 'password2'], 'string', 'max' => 255],
             [['authKey', 'name', 'surname'], 'string', 'max' => 32],
+            [['isAdmin'], 'boolean'],
 			[['password2'], 'required', 'on' => 'registration'],
 			[['password'], 'string', 'min' => 6, 'on' => 'registration'],
 			['password', 'compare', 'compareAttribute' => 'password2', 'on' => 'registration'],
-			[['username'], 'unique', 'on' => 'registration'],
+			[['username'], 'unique', 'on' => ['registration','adminUpdate']],
         ];
     }
 
