@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Matches */
+/* @var $model app\models\Places */
 
-$this->title = 'Create Matches';
-$this->params['breadcrumbs'][] = ['label' => 'Matches', 'url' => ['index']];
+$this->title = 'Create Places';
+$this->params['breadcrumbs'][] = ['label' => 'Places', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="matches-create">
+<div class="places-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
