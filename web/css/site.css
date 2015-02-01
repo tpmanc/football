@@ -437,3 +437,8 @@ a.desc:after {
 .teamHolder .greenTeam .scoreList{
     padding-right: 10px;
 }
+
+.site-error {
+    text-align: center;
+    font-family: sans-serif;
+}
