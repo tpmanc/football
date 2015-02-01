@@ -5,6 +5,8 @@ namespace app\controllers;
 use Yii;
 use app\models\Matches;
 use app\models\Places;
+use app\models\ScoreHistory;
+use app\models\Users;
 use app\models\MatchesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -59,10 +61,14 @@ class MatchController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $scores = ScoreHistory::find()->where(['matchId' => $model->id])->asArray()->all();
+        $users = Users::getAllUsers();
         $place = $model->place;
         return $this->render('view', [
             'model' => $model,
+            'scores' => $scores,
             'place' => $place,
+            'users' => $users,
         ]);
     }
 

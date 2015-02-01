@@ -16,10 +16,9 @@ $scoreArr = explode(':', $model->score);
                 <div class="teamTitle">Красные</div>
                 <div class="redSeparator"></div>
                 <div class="scoreList">
-                    <div class="scoreItem">Леха Фамилия (4)</div>
-                    <div class="scoreItem">Кирилл Казакевич (4)</div>
-                    <div class="scoreItem">Леха Фамилия (4)</div>
-                    <div class="scoreItem">Леха Фамилия (4)</div>
+                    <?php foreach($scores as $score){ if( $score['team'] == 0 ){ ?>
+                        <div class="scoreItem"><?=$users[$score['playerId']]?> (<?= $score['score']?>)</div>
+                    <?php } } ?>
                 </div>
             </div>
             <div class="emblemArea">
@@ -37,10 +36,9 @@ $scoreArr = explode(':', $model->score);
                 <div class="teamTitle">Зеленые</div>
                 <div class="greenSeparator"></div>
                 <div class="scoreList">
-                    <div class="scoreItem">Леха Фамилия (4)</div>
-                    <div class="scoreItem">Кирилл Казакевич (4)</div>
-                    <div class="scoreItem">Леха Фамилия (4)</div>
-                    <div class="scoreItem">Леха Фамилия (4)</div>
+                    <?php foreach($scores as $score){ if( $score['team'] == 1 ){ ?>
+                        <div class="scoreItem"><?=$users[$score['playerId']]?> (<?= $score['score']?>)</div>
+                    <?php } } ?>
                 </div>
             </div>
         </div>
