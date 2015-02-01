@@ -11,6 +11,7 @@ use Yii;
  * @property integer $playerId
  * @property integer $team
  * @property integer $score
+ * @property integer $matchId
  */
 class ScoreHistory extends \yii\db\ActiveRecord
 {
@@ -28,8 +29,8 @@ class ScoreHistory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['playerId', 'team', 'score'], 'required'],
-            [['playerId', 'team', 'score'], 'integer']
+            [['playerId', 'team', 'score', 'matchId'], 'required'],
+            [['playerId', 'team', 'score', 'matchId'], 'integer']
         ];
     }
 
@@ -43,6 +44,7 @@ class ScoreHistory extends \yii\db\ActiveRecord
             'playerId' => 'Игрок',
             'team' => 'Команда',
             'score' => 'Забито мячей',
+            'matchId' => 'Матч',
         ];
     }
 }

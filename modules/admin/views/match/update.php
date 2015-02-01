@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="matches-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+	<?= Html::a('Добавить забитых мячей', ['/admin/score-history/create', 'matchId' => $model->id], ['class' => 'btn btn-primary']) ?>
 
     <?= $this->render('_form', [
         'model' => $model,

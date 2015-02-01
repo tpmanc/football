@@ -52,6 +52,17 @@ class Users extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function getAllUsers()
+    {
+        $users = Users::find()->asArray()->all();
+        $return = [];
+        $return[0] = 'Автогол';
+        foreach ($users as $user) {
+            $return[$user['id']] = $user['name'].' '.$user['surname'];
+        }
+        return $return;
+    }
+
     /**
      * @inheritdoc
      */

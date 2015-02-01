@@ -18,7 +18,7 @@ class ScoreHistorySearch extends ScoreHistory
     public function rules()
     {
         return [
-            [['id', 'playerId', 'team', 'score'], 'integer'],
+            [['id', 'playerId', 'team', 'score', 'matchId'], 'integer'],
         ];
     }
 
@@ -59,6 +59,7 @@ class ScoreHistorySearch extends ScoreHistory
             'playerId' => $this->playerId,
             'team' => $this->team,
             'score' => $this->score,
+            'matchId' => $this->matchId,
         ]);
 
         return $dataProvider;

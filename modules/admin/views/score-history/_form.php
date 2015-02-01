@@ -12,9 +12,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'playerId')->textInput() ?>
+    <?= $form->field($model, 'playerId')->dropDownList( $users ) ?>
 
-    <?= $form->field($model, 'team')->textInput() ?>
+    <?= $form->field($model, 'team')->radioList([0 => 'Красная команда', 1 => 'Зеленая команда']) ?>
 
     <?= $form->field($model, 'score')->textInput() ?>
 

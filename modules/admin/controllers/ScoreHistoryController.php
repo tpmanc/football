@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\components\AccessFilter;
+use app\models\Users;
 
 /**
  * ScoreHistoryController implements the CRUD actions for ScoreHistory model.
@@ -62,15 +63,17 @@ class ScoreHistoryController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($matchId)
     {
         $model = new ScoreHistory();
+        $model->matchId = $matchId;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'users' => Users::getAllUsers(),
             ]);
         }
     }
