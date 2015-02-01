@@ -22,10 +22,9 @@ class AppAsset extends AssetBundle
         'css/animate.css',
     ];
     public $js = [
-        'js/animate.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        // 'yii\bootstrap\BootstrapAsset',
     ];
 }
