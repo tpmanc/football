@@ -11,7 +11,7 @@ $this->title = 'Matches';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="matches-index">
-
+    <h1 class="pageH1"><?= Html::encode($this->title) ?></h1>
     <p>
         <?= Html::a('Create Matches', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
