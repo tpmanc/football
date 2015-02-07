@@ -7,44 +7,60 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\MatchesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Matches';
+$this->title = 'Матчи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="matches-index">
     <h1 class="pageH1"><?= Html::encode($this->title) ?></h1>
-    <p>
-        <?= Html::a('Create Matches', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <div class="data-table-container">
+        <table class="data-table data-table--has-secondary">
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Счет</th>
+                    <th>Место</th>
+                    <th></th>
+                </tr>
+            </thead>
 
-            'id',
-            [
-                'attribute' => 'placeId',
-                'label' => 'Место',
-                'value' => function ($data){
-                    return $data->place->title;
-                },
-            ],
-            'score',
-            [
-                'attribute' => 'date',
-                'format' => ['date', 'php:d.m.Y'],
-            ],
-            [
-                'attribute' => 'date',
-                'label' => 'Время',
-                'format' => ['time', 'php:H:i'],
-            ],
-            
+            <tbody>
+                <?php foreach($matches as $match){ ?>
+                    <tr class="data-table__clickable-row">
+                        <td>
+                            <span><?= date('d.m.Y', $match->date)?></span>
+                        </td>
+                        <td>
+                            <span><?= date('H:i', $match->date)?></span>
+                        </td>
+                        <td>
+                            <span><?= $match->score?></span>
+                        </td>
+                        <td>
+                            <span><?= $match->place->title?></span>
+                        </td>
+                        <td>
+                            <lx-dropdown position="right" from-top>
+                                <button class="btn btn--l btn--black btn--icon" lx-ripple lx-dropdown-toggle>
+                                    <i class="mdi mdi-dots-vertical"></i>
+                                </button>
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}',],
-
-            
-        ],
-    ]); ?>
+                                <lx-dropdown-menu>
+                                    <ul>
+                                        <li><?= Html::a('Редактировать', ['/admin/match/update', 'id' => $match['id']], ['class' => 'dropdown-link'])?></li>
+                                        <li><?= Html::a('Просмотр', ['/admin/match/view', 'id' => $match['id']], ['class' => 'dropdown-link'])?></li>
+                                        <li><?= Html::a('Посмотреть на сайте', ['/match/view', 'id' => $match['id']], ['class' => 'dropdown-link'])?></li>
+                                    </ul>
+                                </lx-dropdown-menu>
+                            </lx-dropdown>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
 
 </div>
+
+<div class="rightFixed"><?= Html::a('<i class="mdi mdi-plus"></i>', ['/admin/match/create'], ['class' => 'btn btn--xl btn--blue btn--fab'])?></div>

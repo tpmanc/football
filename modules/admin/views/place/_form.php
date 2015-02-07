@@ -7,19 +7,26 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Places */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
-<div class="places-form">
+<script>var itemId = <?= (!$model->id)?'"new"':$model->id;?>;</script>
+<div class="places-form" ng-controller="stadiumController">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => 64]) ?>
-
-    <?= $form->field($model, 'adress')->textInput(['maxlength' => 255]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    <div flex-item>
+        <lx-text-field label="Название" error="error.title">
+            <input type="text" ng-model="textFields.title">
+        </lx-text-field>
     </div>
 
+    <div flex-item>
+        <lx-text-field label="Адрес" error="error.adress">
+            <input type="text" ng-model="textFields.adress">
+        </lx-text-field>
+    </div>
+    <br />
+    <div class="form-group">
+    	<a class="btn btn--m btn--green btn--raised" ng-click="saveData()">Сохранить</a>
+    </div>
     <?php ActiveForm::end(); ?>
 
 </div>

@@ -7,40 +7,44 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Matches */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Matches', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => 'Матчи', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Матч '.date('d.m.Y', $model->date);
 ?>
 <div class="matches-view">
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?/*= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) */?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'date' => [
-                'label' => 'Дата',
-                'value' => date('d.m.Y', (int)$model->date),
-            ],
-            'time' => [
-                'label' => 'Время',
-                'value' => date('H:i', (int)$model->date),
-            ],
-            'placeId' => [
-                'label' => 'Место',
-                'value' => $place->title,
-            ],
-            'score',
-        ],
-    ]) ?>
-
+	<div flex-item>
+		<ul class="list">
+			<li class="list-row list-row--has-primary list-row--has-separator">
+				<div class="list-content-tile list-content-tile--two-lines">
+					<strong><?= $model->id?></strong>
+					<span>ID</span>
+				</div>
+			</li>
+			<li class="list-row list-row--has-primary list-row--has-separator">
+				<div class="list-content-tile list-content-tile--two-lines">
+					<strong><?= date('d.m.Y', (int)$model->date)?></strong>
+					<span>Дата матча</span>
+				</div>
+			</li>
+			<li class="list-row list-row--has-primary list-row--has-separator">
+				<div class="list-content-tile list-content-tile--two-lines">
+					<strong><?= date('H:i', (int)$model->date)?></strong>
+					<span>Время начала</span>
+				</div>
+			</li>
+			<li class="list-row list-row--has-primary list-row--has-separator">
+				<div class="list-content-tile list-content-tile--two-lines">
+					<strong><?= $model->place->title?></strong>
+					<span>Место</span>
+				</div>
+			</li>
+			<li class="list-row list-row--has-primary list-row--has-separator">
+				<div class="list-content-tile list-content-tile--two-lines">
+					<strong><?= ($model->score=='')?'неизвестно':$model->score?></strong>
+					<span>Счет</span>
+				</div>
+			</li>
+		</ul>
+	</div>
 </div>
+
+<div class="rightFixed"><?= Html::a('<i class="mdi mdi-pencil"></i>', ['/admin/match/update', 'id' => $model->id], ['class' => 'btn btn--xl btn--blue btn--fab'])?></div>

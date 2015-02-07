@@ -9,33 +9,51 @@ use yii\bootstrap\BootstrapAsset;
 /* @var $this yii\web\View */
 /* @var $model app\models\Matches */
 /* @var $form yii\widgets\ActiveForm */
-
-$this->registerCssFile(Yii::getAlias("@web/css/admin/bootstrap-clockpicker.min.css"), []);
-$this->registerCssFile(Yii::getAlias("@web/css/admin/datepicker3.css"), []);
-
-$this->registerJsFile(Yii::getAlias('@web/js/admin/clockpicker.js'), ['depends' => JqueryAsset::className()]);
-$this->registerJsFile(Yii::getAlias('@web/js/admin/adminMatch.js'), ['depends' => JqueryAsset::className()]);
-$this->registerJsFile(Yii::getAlias('@web/js/admin/bootstrap-datepicker.js'), ['depends' => JqueryAsset::className()]);
 ?>
-
-<div class="matches-form">
+<script>var itemId = <?= (!$model->id)?'"new"':$model->id;?>;</script>
+<div class="matches-form" ng-controller="matchController">
 
     <?php $form = ActiveForm::begin([
-    	'enableAjaxValidation' => true
+    	// 'enableAjaxValidation' => true
     ]); ?>
 
+    <lx-date-picker model="datepicker.date" label="Дата матча" locale="ru"></lx-date-picker>
+
+    <div flex-item>
+        <lx-text-field label="Время начала" error="error.time">
+            <input type="text" ng-model="textFields.onlyTime">
+        </lx-text-field>
+    </div>
+
+    <br />
+    <?php foreach($places as $key => $place){ ?>
+        <div class="radio-button">
+            <input type="radio" id="radio<?= $key?>" name="radio1" ng-model="textFields.placeId" value="<?= $key?>" class="radio-button__input">
+            <label for="radio<?= $key?>" class="radio-button__label"><?= $place->title?></label>
+            <span class="radio-button__help"><?= $place->adress?></span>
+        </div>
+    <?php } ?>
+
+    
+<?php /*
     <?= $form->field($model, 'onlyDate')->textInput() ?>
 
     <?= $form->field($model, 'onlyTime')->textInput() ?>
 
-    <?//= $form->field($model, 'placeId')->textInput() ?>
-
     <?= $form->field($model, 'placeId')->radioList(ArrayHelper::map($places, 'id', 'title')) ?>
+*/?>
 
-    <?if(!$model->isNewRecord){echo $form->field($model, 'score')->textInput(['maxlength' => 6]);} ?>
+    <?php if(!$model->isNewRecord){ ?>
+        <div flex-item>
+            <lx-text-field label="Счет" error="error.score">
+                <input type="text" ng-model="textFields.score">
+            </lx-text-field>
+        </div>
+    <?php } ?>
 
+    <br />
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <a class="btn btn--m btn--green btn--raised" ng-click="saveData()">Сохранить</a>
     </div>
 
     <?php ActiveForm::end(); ?>

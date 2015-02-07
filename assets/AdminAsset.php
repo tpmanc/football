@@ -18,15 +18,17 @@ class AdminAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'js/admin/vendor/bower/lumx/dist/css/lumx.css',
-        'css/admin/material-design-iconic-font.min.css',
+        'css/admin/admin.css',
+        'js/admin/vendor/bower/lumx/dist/lumx.css',
+        'js/admin/vendor/bower/mdi/materialdesignicons.css',
+        'css/animate.css',
     ];
     public $js = [
         // 'js/admin/materialize.min.js',
         'js/admin/vendor/bower/velocity/velocity.js',
         'js/admin/vendor/bower/moment/min/moment-with-locales.min.js',
         'js/admin/vendor/bower/angular/angular.js',
-        'js/admin/vendor/bower/lumx/dist/js/lumx.min.js',
+        'js/admin/vendor/bower/lumx/dist/lumx.min.js',
         'js/admin/myApp.js',
     ];
     public $depends = [

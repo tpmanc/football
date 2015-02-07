@@ -5,14 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Matches */
 
-$this->title = 'Update Matches: ' . ' ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Matches', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Матч ' . date('d.m.Y', $model->date);
+$this->params['breadcrumbs'][] = ['label' => 'Матчи', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Матч '.date('d.m.Y', $model->date);
 ?>
 <div class="matches-update">
-
-	<?= Html::a('Добавить забитых мячей', ['/admin/score-history/create', 'matchId' => $model->id], ['class' => 'btn btn-primary']) ?>
 
     <?= $this->render('_form', [
         'model' => $model,
@@ -20,3 +17,5 @@ $this->params['breadcrumbs'][] = 'Update';
     ]) ?>
 
 </div>
+
+<?= Html::a('Добавить забитых мячей', ['/admin/score-history/create', 'matchId' => $model->id], ['class' => 'btn btn-primary']) ?>

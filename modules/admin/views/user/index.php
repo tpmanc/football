@@ -11,22 +11,50 @@ $this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="users-index">
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <h1 class="pageH1"><?= Html::encode($this->title) ?></h1>
+    
+    <div class="data-table-container">
+        <table class="data-table data-table--has-secondary">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Права администратора</th>
+                    <th></th>
+                </tr>
+            </thead>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            <tbody>
+                <?php foreach($users as $user){ ?>
+                    <tr class="data-table__clickable-row">
+                        <td>
+                            <span><?= $user->name?></span>
+                        </td>
+                        <td>
+                            <span><?= $user->surname?></span>
+                        </td>
+                        <td>
+                            <span><?= $user->isAdmin?></span>
+                        </td>
+                        <td>
+                            <lx-dropdown position="right" from-top>
+                                <button class="btn btn--l btn--black btn--icon" lx-ripple lx-dropdown-toggle>
+                                    <i class="mdi mdi-dots-vertical"></i>
+                                </button>
 
-            'id',
-            'username',
-            'name',
-            'surname',
-            'isAdmin',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                                <lx-dropdown-menu>
+                                    <ul>
+                                        <li><?= Html::a('Редактировать', ['/admin/match/update', 'id' => $user['id']], ['class' => 'dropdown-link'])?></li>
+                                        <li><?= Html::a('Просмотр', ['/admin/match/view', 'id' => $user['id']], ['class' => 'dropdown-link'])?></li>
+                                        <li><?= Html::a('Посмотреть на сайте', ['/match/view', 'id' => $user['id']], ['class' => 'dropdown-link'])?></li>
+                                    </ul>
+                                </lx-dropdown-menu>
+                            </lx-dropdown>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
 
 </div>
