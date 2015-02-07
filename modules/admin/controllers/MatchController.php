@@ -38,12 +38,10 @@ class MatchController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new MatchesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $matches = Matches::find()->orderBy(['date' => SORT_DESC])->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'matches' => $matches,
         ]);
     }
 

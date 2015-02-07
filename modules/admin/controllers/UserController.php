@@ -37,12 +37,10 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UsersSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $users = Users::find()->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'users' => $users,
         ]);
     }
 
