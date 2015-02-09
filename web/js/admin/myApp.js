@@ -79,18 +79,17 @@ function matchController($scope, $http, LxNotificationService) {
 		var placeParams = {};
 		if( itemId == 'new' ){
 			action = 'create';
-			placeParams.onlyDate = moment.unix($scope.datepicker.date).format('DD.MM.YYYY');
+			placeParams.onlyDate = moment(dpScope.selected.date).format('DD.MM.YYYY');
 			placeParams.onlyTime = $scope.textFields.onlyTime;
 			placeParams.placeId = $scope.textFields.placeId;
 		}else{
 			action = 'save';
 			placeParams.id = $scope.textFields.id;
-			placeParams.onlyDate =  moment.unix($scope.datepicker.date).format('DD.MM.YYYY');
+			placeParams.onlyDate =  moment(dpScope.selected.date).format('DD.MM.YYYY');
 			placeParams.onlyTime = $scope.textFields.onlyTime;
 			placeParams.placeId = $scope.textFields.placeId;
 			placeParams.score = $scope.textFields.score;
 		}
-		console.log();
 		$http({method: 'GET', url: 'http://football/web/index.php/ajax/'+action+'-match', params: placeParams}).
 			success(function(data, status) {
 				if( data.success != undefined ){
@@ -100,17 +99,29 @@ function matchController($scope, $http, LxNotificationService) {
 						LxNotificationService.error('Ошибка при сохранении');
 					}
 				}else{
-					if( data['places-title'] != undefined ){
-						$scope.error.title = true;
-						LxNotificationService.notify(data['places-title'][0], undefined, true);
+					if( data['matches-onlydate'] != undefined ){
+						$scope.error.date = true;
+						LxNotificationService.notify(data['matches-onlydate'][0], undefined, true);
 					}else{
-						$scope.error.title = false;
+						$scope.error.date = false;
 					}
-					if( data['places-adress'] != undefined ){
-						$scope.error.adress = true;
-						LxNotificationService.notify(data['places-adress'][0], undefined, true);
+					if( data['matches-onlytime'] != undefined ){
+						$scope.error.time = true;
+						LxNotificationService.notify(data['matches-onlytime'][0], undefined, true);
 					}else{
-						$scope.error.adress = false;
+						$scope.error.time = false;
+					}
+					if( data['matches-placeId'] != undefined ){
+						$scope.error.placeId = true;
+						LxNotificationService.notify(data['matches-placeId'][0], undefined, true);
+					}else{
+						$scope.error.placeId = false;
+					}
+					if( data['matches-score'] != undefined ){
+						$scope.error.score = true;
+						LxNotificationService.notify(data['matches-score'][0], undefined, true);
+					}else{
+						$scope.error.score = false;
 					}
 				}
 			})
@@ -122,11 +133,17 @@ function matchController($scope, $http, LxNotificationService) {
 		$http({method: 'GET', url: 'http://football/web/index.php/ajax/match-info', params: {id: itemId}}).
 			success(function(data, status) {
 				$scope.textFields.id = data.id;
-				$scope.datepicker.date = moment.unix(data.onlyDate);
+				$scope.datepicker.date = moment.unix(data.onlyDate)._i;
 				$scope.textFields.onlyTime = data.onlyTime;
 				$scope.textFields.placeId = data.placeId;
 				$scope.textFields.score = data.score;
-				console.log($scope.datepicker.date);
+
+				// console.log($scope.datepicker.date);
+				dpScope.select(moment($scope.datepicker.date));
+				dpScope.selectYear(moment($scope.datepicker.date).format('YYYY'));
+				// dpScope.activeDate.month( moment($scope.datepicker.date).format('YYYY') );
+				dpScope.$broadcast();
+				// dpScope.$apply();
 			})
 			.
 			error(function(data, status) {			
@@ -137,7 +154,10 @@ function matchController($scope, $http, LxNotificationService) {
 myAppModule.controller('stadiumController', stadiumController);
 myAppModule.controller('matchController', matchController);
 
+var elem,dpScope;
 $(function(){
+	elem = document.querySelector('input[ng-model="selected.model"]');
+	dpScope = angular.element(elem).scope();
 	$('.rightFixed').addClass('animated bounceInUp');
 	$('#topDropDown').show();
 });

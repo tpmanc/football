@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
     </div>
     <br />
     <div class="form-group">
-    	<a class="btn btn--m btn--green btn--raised" ng-click="saveData()">Сохранить</a>
+    	<a class="btn btn--m btn--green btn--raised" ng-click="saveData()" lx-ripple>Сохранить</a>
     </div>
     <?php ActiveForm::end(); ?>
 

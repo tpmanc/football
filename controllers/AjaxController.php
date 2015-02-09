@@ -62,6 +62,32 @@ class AjaxController extends \yii\web\Controller
 		}
 	}
 
+	public function actionSaveMatch($id, $onlyDate, $onlyTime, $placeId, $score)
+	{
+		if( \Yii::$app->user->identity->isAdmin ){
+			$model = Matches::find()->where(['id' => $id])->one();
+			$model->scenario = 'adminUpdate';
+			if( !$model ){
+				return $this->returnError();
+			}
+			$arr1 = explode('.', $onlyDate);
+			$arr2 = explode(':', $onlyTime);
+			$model->onlyDate = $onlyDate;
+			$model->onlyTime = $onlyTime;
+			$model->date = mktime($arr2[0], $arr2[1], 0, $arr1[1], $arr1[0], $arr1[2]);
+			$model->placeId = $placeId;
+			$model->score = $score;
+			if( $model->validate() ){
+				if( $model->save() ){
+					return $this->returnSuccess();
+				}
+				return $this->returnError();
+			}
+			\Yii::$app->response->format = 'json';
+			return \yii\widgets\ActiveForm::validate($model);
+		}
+	}
+
 	private function returnError()
 	{
 		return json_encode(['success' => false]);
