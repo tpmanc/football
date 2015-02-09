@@ -1,5 +1,7 @@
 var myAppModule = angular.module('myApp', ['lumx']);
 
+var ajaxUrl = 'http://football/web/index.php/ajax/';
+
 function stadiumController($scope, $http, LxNotificationService) {
 	$scope.textFields = {};
 	$scope.textFields.id = '';
@@ -21,7 +23,7 @@ function stadiumController($scope, $http, LxNotificationService) {
 			placeParams.title = $scope.textFields.title;
 			placeParams.adress = $scope.textFields.adress;
 		}
-		$http({method: 'GET', url: 'http://football.go-sexy.ru/index.php/ajax/'+action+'-place', params: placeParams}).
+		$http({method: 'GET', url: ajaxUrl+action+'-place', params: placeParams}).
 			success(function(data, status) {
 				if( data.success != undefined ){
 					if( data.success ){
@@ -49,7 +51,7 @@ function stadiumController($scope, $http, LxNotificationService) {
 			});
 	}
 	if( itemId != 'new' ){
-		$http({method: 'GET', url: 'http://football.go-sexy.ru/index.php/ajax/place-info', params: {id: itemId}}).
+		$http({method: 'GET', url: ajaxUrl+'place-info', params: {id: itemId}}).
 			success(function(data, status) {
 				$scope.textFields.id = data.id;
 				$scope.textFields.title = data.title;
@@ -90,7 +92,7 @@ function matchController($scope, $http, LxNotificationService) {
 			placeParams.placeId = $scope.textFields.placeId;
 			placeParams.score = $scope.textFields.score;
 		}
-		$http({method: 'GET', url: 'http://football.go-sexy.ru/index.php/ajax/'+action+'-match', params: placeParams}).
+		$http({method: 'GET', url: ajaxUrl+action+'-match', params: placeParams}).
 			success(function(data, status) {
 				if( data.success != undefined ){
 					if( data.success ){
@@ -130,15 +132,13 @@ function matchController($scope, $http, LxNotificationService) {
 			});
 	}
 	if( itemId != 'new' ){
-		$http({method: 'GET', url: 'http://football.go-sexy.ru/index.php/ajax/match-info', params: {id: itemId}}).
+		$http({method: 'GET', url: ajaxUrl+'match-info', params: {id: itemId}}).
 			success(function(data, status) {
 				$scope.textFields.id = data.id;
 				$scope.datepicker.date = moment.unix(data.onlyDate)._i;
 				$scope.textFields.onlyTime = data.onlyTime;
 				$scope.textFields.placeId = data.placeId;
 				$scope.textFields.score = data.score;
-
-				// console.log($scope.datepicker.date);
 				dpScope.select(moment($scope.datepicker.date));
 				dpScope.selectYear(moment($scope.datepicker.date).format('YYYY'));
 				// dpScope.activeDate.month( moment($scope.datepicker.date).format('YYYY') );
