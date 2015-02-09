@@ -28,8 +28,8 @@ use yii\bootstrap\BootstrapAsset;
     <br />
     <?php foreach($places as $key => $place){ ?>
         <div class="radio-button">
-            <input type="radio" id="radio<?= $key?>" name="radio1" ng-model="textFields.placeId" value="<?= $key?>" class="radio-button__input">
-            <label for="radio<?= $key?>" class="radio-button__label"><?= $place->title?></label>
+            <input type="radio" id="radio<?= $place->id?>" name="radio1" ng-model="textFields.placeId" value="<?= $place->id?>" class="radio-button__input">
+            <label for="radio<?= $place->id?>" class="radio-button__label"><?= $place->title?></label>
             <span class="radio-button__help"><?= $place->adress?></span>
         </div>
     <?php } ?>

@@ -88,6 +88,31 @@ class AjaxController extends \yii\web\Controller
 		}
 	}
 
+	public function actionCreateMatch($onlyDate, $onlyTime, $placeId)
+	{
+		if( \Yii::$app->user->identity->isAdmin ){
+			$model = new Matches();
+			$model->scenario = 'adminCreate';
+			if( !$model ){
+				return $this->returnError();
+			}
+			$arr1 = explode('.', $onlyDate);
+			$arr2 = explode(':', $onlyTime);
+			$model->onlyDate = $onlyDate;
+			$model->onlyTime = $onlyTime;
+			$model->date = mktime($arr2[0], $arr2[1], 0, $arr1[1], $arr1[0], $arr1[2]);
+			$model->placeId = $placeId;
+			if( $model->validate() ){
+				if( $model->save() ){
+					return $this->returnSuccess();
+				}
+				return $this->returnError();
+			}
+			\Yii::$app->response->format = 'json';
+			return \yii\widgets\ActiveForm::validate($model);
+		}
+	}
+
 	private function returnError()
 	{
 		return json_encode(['success' => false]);

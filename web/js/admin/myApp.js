@@ -21,7 +21,7 @@ function stadiumController($scope, $http, LxNotificationService) {
 			placeParams.title = $scope.textFields.title;
 			placeParams.adress = $scope.textFields.adress;
 		}
-		$http({method: 'GET', url: 'http://football/web/index.php/ajax/'+action+'-place', params: placeParams}).
+		$http({method: 'GET', url: 'http://football.go-sexy.ru/index.php/ajax/'+action+'-place', params: placeParams}).
 			success(function(data, status) {
 				if( data.success != undefined ){
 					if( data.success ){
@@ -49,7 +49,7 @@ function stadiumController($scope, $http, LxNotificationService) {
 			});
 	}
 	if( itemId != 'new' ){
-		$http({method: 'GET', url: 'http://football/web/index.php/ajax/place-info', params: {id: itemId}}).
+		$http({method: 'GET', url: 'http://football.go-sexy.ru/index.php/ajax/place-info', params: {id: itemId}}).
 			success(function(data, status) {
 				$scope.textFields.id = data.id;
 				$scope.textFields.title = data.title;
@@ -67,7 +67,7 @@ function matchController($scope, $http, LxNotificationService) {
 	$scope.textFields.id = '';
 	$scope.datepicker.date = new Date();
 	$scope.textFields.onlyTime = '';
-	$scope.textFields.placeId = '';
+	$scope.textFields.placeId = 1;
 	$scope.textFields.score = '';
 	$scope.error = {};
 	$scope.error.date = false;
@@ -90,7 +90,7 @@ function matchController($scope, $http, LxNotificationService) {
 			placeParams.placeId = $scope.textFields.placeId;
 			placeParams.score = $scope.textFields.score;
 		}
-		$http({method: 'GET', url: 'http://football/web/index.php/ajax/'+action+'-match', params: placeParams}).
+		$http({method: 'GET', url: 'http://football.go-sexy.ru/index.php/ajax/'+action+'-match', params: placeParams}).
 			success(function(data, status) {
 				if( data.success != undefined ){
 					if( data.success ){
@@ -130,7 +130,7 @@ function matchController($scope, $http, LxNotificationService) {
 			});
 	}
 	if( itemId != 'new' ){
-		$http({method: 'GET', url: 'http://football/web/index.php/ajax/match-info', params: {id: itemId}}).
+		$http({method: 'GET', url: 'http://football.go-sexy.ru/index.php/ajax/match-info', params: {id: itemId}}).
 			success(function(data, status) {
 				$scope.textFields.id = data.id;
 				$scope.datepicker.date = moment.unix(data.onlyDate)._i;
