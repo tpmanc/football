@@ -17,5 +17,5 @@ $this->params['breadcrumbs'][] = 'Матч '.date('d.m.Y', $model->date);
     ]) ?>
 
 </div>
-
-<?= Html::a('Добавить забитых мячей', ['/admin/score-history/create', 'matchId' => $model->id], ['class' => 'btn btn-primary']) ?>
+<br />
+<?= Html::a('Добавить забитых мячей', ['/admin/score-history/create', 'matchId' => $model->id], ['class' => 'btn btn--m btn--blue btn--raised']) ?>

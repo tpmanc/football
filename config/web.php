@@ -7,13 +7,22 @@ $config = [
 	'language' => 'ru-RU',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'defaultRoute' => 'match/match-history',
+    'defaultRoute' => '/match/match-history',
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\admin',
         ],
     ],
     'components' => [
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            // 'enableStrictParsing' => true,
+            // 'showScriptName' => false,
+            'rules' => [
+                // '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'ajax'],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Ur&*3nVU&#vj',
@@ -27,14 +36,6 @@ $config = [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
-        ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            // 'enableStrictParsing' => true,
-            // 'showScriptName' => false,
-            'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'ajax'],
-            ],
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Users;
 
 /**
  * This is the model class for table "scoreHistory".
@@ -46,5 +47,10 @@ class ScoreHistory extends \yii\db\ActiveRecord
             'score' => 'Забито мячей',
             'matchId' => 'Матч',
         ];
+    }
+
+    public function getPlayer()
+    {
+        return $this->hasOne(Users::className(), ['id' => 'playerId']);
     }
 }

@@ -16,7 +16,7 @@ $scoreArr = explode(':', $model->score);
                 <div class="teamTitle">Красные</div>
                 <div class="redSeparator"></div>
                 <div class="scoreList">
-                    <?php foreach($scores as $score){ if( $score['team'] == 0 ){ ?>
+                    <?php foreach($scores as $score){ if( $score['team'] == 2 ){ ?>
                         <div class="scoreItem"><?=$users[$score['playerId']]?> (<?= $score['score']?>)</div>
                     <?php } } ?>
                 </div>

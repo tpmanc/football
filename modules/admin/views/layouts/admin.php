@@ -58,9 +58,11 @@ AdminAsset::register($this);
 
 		<div class="container">
 			<div class="left-menu bgc-red-400">
-				<div><?= Html::a('<i class="icon icon--l mdi mdi-calendar"></i>Матчи', ['/admin/match/index']) ?></div>
+				<div><?= Html::a('<i class="icon icon--l mdi mdi-calendar"></i>Матчи', ['/admin/match/index'], ['class' => (\Yii::$app->controller->id=='match')?'active':'']) ?></div>
+				<div><?= Html::a('<i class="icon icon--l mdi mdi-google-earth"></i>Забитые мячи', ['/admin/score-history/index'], ['class' => (\Yii::$app->controller->id=='score-history')?'active':'']) ?></div>
 				<?php /*<div><?= Html::a('<i class="icon icon--l mdi mdi-account-multiple"></i>Игроки', ['/admin/user/index']) ?></div>*/?>
-				<div><?= Html::a('<i class="icon icon--l mdi mdi-store"></i>Стадионы', ['/admin/place/index']) ?></div>
+				<div><?= Html::a('<i class="icon icon--l mdi mdi-store"></i>Стадионы', ['/admin/place/index'], ['class' => (\Yii::$app->controller->id=='place')?'active':'']) ?></div>
+				
 			</div>
 			<div class="contentHolder">
 				<?= Breadcrumbs::widget([

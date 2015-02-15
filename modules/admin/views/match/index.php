@@ -49,8 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <lx-dropdown-menu>
                                     <ul>
                                         <li><?= Html::a('Редактировать', ['/admin/match/update', 'id' => $match['id']], ['class' => 'dropdown-link'])?></li>
+                                        <li><?= Html::a('Забитые мячи', ['/admin/score-history/view', 'matchId' => $match['id']], ['class' => 'dropdown-link'])?></li>
                                         <li><?= Html::a('Просмотр', ['/admin/match/view', 'id' => $match['id']], ['class' => 'dropdown-link'])?></li>
-                                        <li><?= Html::a('Посмотреть на сайте', ['/match/view', 'id' => $match['id']], ['class' => 'dropdown-link'])?></li>
+                                        <li><?= Html::a('Посмотреть на сайте', ['/match/view', 'id' => $match['id']], ['class' => 'dropdown-link', 'target' => '_blank'])?></li>
                                     </ul>
                                 </lx-dropdown-menu>
                             </lx-dropdown>

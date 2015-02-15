@@ -56,7 +56,7 @@ class Users extends \yii\db\ActiveRecord
     {
         $users = Users::find()->asArray()->all();
         $return = [];
-        $return[0] = 'Автогол';
+        // $return[0] = 'Автогол';
         foreach ($users as $user) {
             $return[$user['id']] = $user['name'].' '.$user['surname'];
         }

@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\models\ScoreHistory;
 use app\models\ScoreHistorySearch;
+use app\models\Matches;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -37,12 +38,10 @@ class ScoreHistoryController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ScoreHistorySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $matches = Matches::find()->orderBy(['date' => SORT_DESC])->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'matches' => $matches,
         ]);
     }
 
@@ -51,10 +50,17 @@ class ScoreHistoryController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($matchId)
     {
+        $model = ScoreHistory::find()->where(['matchId' => $matchId])->all();
+        $match = Matches::find()->where(['id' => $matchId])->one();
+        if($model === null){
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'match' => $match,
         ]);
     }
 
@@ -67,15 +73,17 @@ class ScoreHistoryController extends Controller
     {
         $model = new ScoreHistory();
         $model->matchId = $matchId;
+        $match = Matches::findOne($model->matchId);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        //     return $this->redirect(['view', 'id' => $model->id]);
+        // } else {
             return $this->render('create', [
                 'model' => $model,
+                'match' => $match,
                 'users' => Users::getAllUsers(),
             ]);
-        }
+        // }
     }
 
     /**
@@ -87,14 +95,16 @@ class ScoreHistoryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $match = Matches::findOne($model->matchId);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        //     return $this->redirect(['view', 'id' => $model->id]);
+        // } else {
             return $this->render('update', [
                 'model' => $model,
+                'match' => $match,
             ]);
-        }
+        // }
     }
 
     /**
