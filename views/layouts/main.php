@@ -26,8 +26,8 @@ AppAsset::register($this);
                 <div class="topMenu">
                     <div class="leftButtons">
                         <?= Html::a('Все матчи', ['/match/match-history'], ['class' => (Yii::$app->requestedRoute == 'match/match-history' || Yii::$app->requestedRoute == '')?'active':'' ]) ?>
-                        <?= Html::a('Статистика', ['/statistic/statistic'], ['class' => (Yii::$app->requestedRoute == 'statistic/statistic')?'active':'' ]) ?>
-                        <?= Html::a('Награды', ['/statistic/trophies'], ['class' => (Yii::$app->requestedRoute == 'statistic/trophies')?'active':'' ]) ?>
+                        <?= Html::a('Статистика', ['/statistics/index'], ['class' => (Yii::$app->requestedRoute == 'statistics/index')?'active':'' ]) ?>
+                        <?= Html::a('Награды', ['/statistics/trophies'], ['class' => (Yii::$app->requestedRoute == 'statistics/trophies')?'active':'' ]) ?>
                     </div>
                     <div class="rightButtons">
                         <?= Html::a('Выйти ( '.\Yii::$app->user->identity->username.' )', ['site/logout'], ['data-method' => 'post']) ?>

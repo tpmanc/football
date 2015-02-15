@@ -442,3 +442,70 @@ a.desc:after {
     text-align: center;
     font-family: sans-serif;
 }
+
+.statistics{
+    padding: 0 98px;
+    margin-top: -11px;
+    font-family: BebasNeue_Regular;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.statistics .line{
+    margin-bottom: 26px;
+}
+
+.statistics .line a{
+    color: #000;
+    margin-right: 23px;
+    word-spacing: -1px;
+}
+
+.statistics .line .btn.active{
+    background: #d01313;
+    padding: 3px 5px;
+    color: #fff;
+}
+
+.statistics .table{
+    margin-top: 36px;
+    margin-left: -1px;
+}
+
+.statistics table{
+    border-spacing: 0px;
+    width: 740px;
+    color: #FFF;
+    text-align: center;
+}
+
+.statistics table thead{
+    background: #242A31;
+}
+
+.statistics table thead th{
+    padding: 8px 0px;
+}
+
+.statistics table tbody{
+    background: #394149;
+    font-weight: normal;
+    font-size: 17px;
+}
+
+.statistics table tbody td{
+    padding: 18px 0px 7px 0px;
+}
+
+.statistics table tbody td:first-child{
+    padding: 18px 0px 7px 6px;
+    color: #d01313;
+}
+
+.statistics table tfoot{
+    background: #394149;
+}
+
+.statistics table tfoot td{
+    padding-top: 10px;
+}
