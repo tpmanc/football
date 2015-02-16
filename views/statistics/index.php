@@ -33,7 +33,7 @@ $this->title = 'Статистика';
                         <td><?= $user['name'] .' '. $user['surname']?></td>
                         <td><?= $user['gameCount']?></td>
                         <td><?= $user['goalCount']?></td>
-                        <td><?= ($user['gameCount']===0)? round($user['goalCount']/$user['gameCount'], 2):'n/a';?></td>
+                        <td><?= ($user['gameCount']!==0)? round($user['goalCount']/$user['gameCount'], 2):'n/a';?></td>
                     </tr>
                 <?php } ?>
             </tbody>

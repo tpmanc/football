@@ -153,7 +153,7 @@ function scoreHistoryController($scope, $http, LxNotificationService) {
 	$scope.selects = {};
 	$scope.textFields.id = '';
 	$scope.textFields.matchId = '';
-	$scope.textFields.teams = [{title: 'Зеленая команда', value: 1}, {title: 'Красная команда', value: 2}];
+	$scope.textFields.teams = [{title: 'Красная команда', value: 1}, {title: 'Зеленая команда', value: 2}];
 	$scope.textFields.score = '';
 	$scope.error = {};
 	$scope.error.playerid = false;
@@ -185,7 +185,7 @@ function scoreHistoryController($scope, $http, LxNotificationService) {
 			checkEmpty = true;
 			LxNotificationService.warning('Выберите команду');
 		}
-		if( isNaN(scoreHistory.score) || scoreHistory.score == 0 ){
+		if( isNaN(scoreHistory.score) ){
 			checkEmpty = true;
 			LxNotificationService.warning('Введите забитые голы');
 		}

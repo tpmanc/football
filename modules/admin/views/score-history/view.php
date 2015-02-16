@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <span><?= $score->player->surname .' '. $score->player->name?></span>
                         </td>
                         <td>
-                            <span><?= ($score->team==1)?'Зеленая':'Красная';?> команда</span>
+                            <span><?= ($score->team==1)?'Красная':'Зеленая';?> команда</span>
                         </td>
                         <td>
                             <span><?= $score->score?></span>
