@@ -17,10 +17,28 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             // 'enableStrictParsing' => true,
-            // 'showScriptName' => false,
+            'showScriptName' => false,
             'rules' => [
-                // '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'ajax'],
+                // site pages
+                '/' => '/match/match-history',
+                '/registration' => '/user/registration',
+                '/statistics' => '/statistics/index',
+
+                // admin module
+                '/admin' => '/admin/default/index',
+
+                '/admin/matches' => '/admin/match/index',
+                '/admin/match/create' => '/admin/match/create',
+                '/admin/match/update/<id:\d+>' => '/admin/match/update',
+                '/admin/match/view/<id:\d+>' => '/admin/match/view',
+                '/admin/match/delete/<id:\d+>' => '/admin/match/delete',
+
+                '/admin/score-history' => '/admin/score-history/index',
+                '/admin/score-history/view/<matchId:\d+>' => '/admin/score-history/view',
+                '/admin/score-history/create/<matchId:\d+>' => '/admin/score-history/create',
+
+                // ajax controller
+                '/ajax' => '/ajax/<action:\w+>',
             ],
         ],
         'request' => [

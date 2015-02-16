@@ -1,6 +1,6 @@
 var myAppModule = angular.module('myApp', ['lumx']);
 
-var ajaxUrl = 'http://football/index.php/ajax/';
+var ajaxUrl = 'http://football.go-sexy.ru/ajax/';
 
 function stadiumController($scope, $http, LxNotificationService) {
 	$scope.textFields = {};
