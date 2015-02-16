@@ -34,6 +34,9 @@ class UserController extends Controller
      */
     public function actionRegistration()
     {
+        if(!\Yii::$app->user->isGuest){
+            return Yii::$app->getResponse()->redirect(Yii::$app->getHomeUrl());
+        }
         $this->layout = 'login';
         $model = new Users();
 		$model->scenario = 'registration';

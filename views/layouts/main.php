@@ -22,18 +22,18 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
     <div class="wrap">
         <div class="contentHolder">
-            <?php if( !Yii::$app->user->isGuest ){ ?>
                 <div class="topMenu">
                     <div class="leftButtons">
                         <?= Html::a('Все матчи', ['/match/match-history'], ['class' => (Yii::$app->requestedRoute == 'match/match-history' || Yii::$app->requestedRoute == '')?'active':'' ]) ?>
                         <?= Html::a('Статистика', ['/statistics/index'], ['class' => (Yii::$app->requestedRoute == 'statistics/index')?'active':'' ]) ?>
                         <?= Html::a('Награды', ['/statistics/trophies'], ['class' => (Yii::$app->requestedRoute == 'statistics/trophies')?'active':'' ]) ?>
                     </div>
-                    <div class="rightButtons">
-                        <?= Html::a('Выйти ( '.\Yii::$app->user->identity->username.' )', ['site/logout'], ['data-method' => 'post']) ?>
-                    </div>
+                    <?php if( !Yii::$app->user->isGuest ){ ?>
+                        <div class="rightButtons">
+                            <?= Html::a('Выйти ( '.\Yii::$app->user->identity->username.' )', ['site/logout'], ['data-method' => 'post']) ?>
+                        </div>
+                    <?php } ?>
                 </div>
-            <?php } ?>
 
             <div class="container">
                 <h1 class="pageH1"><?= Html::encode($this->title) ?></h1>

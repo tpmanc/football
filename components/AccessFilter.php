@@ -18,7 +18,8 @@ class AccessFilter extends AccessControl
 		if( !\Yii::$app->user->isGuest && \Yii::$app->user->identity->isAdmin ){
 			return true;
 		}
-		throw new ForbiddenHttpException('You are not allowed to perform this action.');
+		// throw new ForbiddenHttpException('You are not allowed to perform this action.');
+		return Yii::$app->getResponse()->redirect(['/site/login']);
 		return false;
 	}
 }

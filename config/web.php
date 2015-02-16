@@ -22,6 +22,7 @@ $config = [
                 // site pages
                 '/' => '/match/match-history',
                 '/registration' => '/user/registration',
+                '/login' => '/site/login',
                 '/statistics' => '/statistics/index',
 
                 // admin module
